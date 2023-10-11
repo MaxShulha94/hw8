@@ -1,0 +1,5 @@
+{% for teacher in teachers %}
+    <a href="{% url "teacher_edit" teacher.id %}"> ID{{ teacher.id }}</a>
+    Teacher`s name: {{ teacher.first_name }}, {{ teacher.last_name }}; Birthdate: {{ teacher.birth_date }}
+    {{ teacher.groups }}<br>
+{% endfor %}

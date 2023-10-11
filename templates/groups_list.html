@@ -1,0 +1,4 @@
+{% for group in groups %}
+    <a href="{% url "group_edit" group.id %}"> ID{{ group.id }}</a>
+    ID: {{ group.id }}; Group`s name: {{ group.name }}; Teacher`s name: {{ groups.teacher }}<br>
+{% endfor %}
