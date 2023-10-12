@@ -10,7 +10,7 @@ def teacher_form(request):
     if request.method == "GET":
         form = TeacherForm()
         return render(request, "teacher_form.html", {"form": form})
-    form = TeacherForm(request.POST, request.FILES)
+    form = TeacherForm(request.POST)
     if form.is_valid():
         form.save()
         return redirect(reverse("teacher_list"))
@@ -24,7 +24,7 @@ def teacher_edit(request, pk):
         form = TeacherForm(instance=teacher)
         return render(request, "teacher_edit.html", {"form": form})
 
-    form = TeacherForm(request.POST, request.FILES, instance=teacher)
+    form = TeacherForm(request.POST, instance=teacher)
     if form.is_valid():
         form.save()
 
@@ -58,15 +58,15 @@ def group_edit(request, pk):
     form = GroupForm(request.POST, instance=group)
     if form.is_valid():
         form.save()
-        form.instance.teachers.clear()
-        form.instance.teachers.set(form.cleaned_data["teachers"])
+        form.instance.teacher.clear()
+        form.instance.teacher.set(form.cleaned_data["teacher"])
+        form.save()
         return redirect(reverse("group_edit", args=[pk]))
 
     return render(request, "group_edit.html", {"form": form})
 
 
 def group_list(request):
-
     groups = Group.objects.all()
     return render(request, "groups_list.html", {"groups": groups})
 
@@ -90,7 +90,7 @@ def student_edit(request, pk):
     student = Student.objects.get(pk=pk)
     if request.method == "GET":
         form = StudentForm(instance=student)
-        return render(request, "student_form.html", {"form": form})
+        return render(request, "student_edit.html", {"form": form})
     form = StudentForm(request.POST, instance=student)
     if form.is_valid():
         form.save()

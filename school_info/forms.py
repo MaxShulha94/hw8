@@ -16,6 +16,8 @@ class GroupForm(forms.ModelForm):
         name = self.cleaned_data["name"]
         if len(name) > 50:
             raise forms.ValidationError("Name is too long")
+        if Group.objects.filter(name=name).exists():
+            raise forms.ValidationError("This group already exists.")
         return name
 
 
@@ -23,6 +25,10 @@ class TeacherForm(forms.ModelForm):
     class Meta:
         model = Teacher
         fields = ["first_name", "last_name", "birth_date", "groups"]
+
+
+class TeacherDeleteForm(forms.Form):
+    confirm = forms.BooleanField(required=True)
 
 
 class StudentForm(forms.ModelForm):
