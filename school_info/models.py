@@ -22,7 +22,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     group = models.ForeignKey(
-        Group, on_delete=models.PROTECT, related_name="students", default=None
+        Group, on_delete=models.CASCADE, related_name="students", default=None
     )
 
     def __str__(self):

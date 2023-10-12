@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from .forms import GroupForm, TeacherForm, StudentForm
@@ -37,6 +37,12 @@ def teacher_list(request):
     return render(request, "teacher_list.html", {"teachers": teachers})
 
 
+def teacher_delete(request, pk):
+    teacher = get_object_or_404(Teacher, pk=pk)
+    teacher.delete()
+    return redirect("teacher_list")
+
+
 def group_form(request):
     if request.method == "GET":
         form = GroupForm()
@@ -68,7 +74,13 @@ def group_edit(request, pk):
 
 def group_list(request):
     groups = Group.objects.all()
-    return render(request, "groups_list.html", {"groups": groups})
+    return render(request, "group_list.html", {"groups": groups})
+
+
+def group_delete(request, pk):
+    group = get_object_or_404(Group, pk=pk)
+    group.delete()
+    return redirect("group_list")
 
 
 def student_form(request):
@@ -101,3 +113,9 @@ def student_edit(request, pk):
 def student_list(request):
     students = Student.objects.all()
     return render(request, "student_list.html", {"students": students})
+
+
+def student_delete(request, pk):
+    student = get_object_or_404(Student, pk=pk)
+    student.delete()
+    return redirect("student_list")
