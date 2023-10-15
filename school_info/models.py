@@ -21,6 +21,7 @@ class Teacher(models.Model):
 class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=30, null=True)
     group = models.ForeignKey(
         Group, on_delete=models.CASCADE, related_name="students", default=None
     )

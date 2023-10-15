@@ -1,3 +1,4 @@
+import phonenumbers
 from django import forms
 
 from .models import Teacher, Group, Student
@@ -36,7 +37,19 @@ class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields = ["first_name", "last_name", "group"]
+        fields = ["first_name", "last_name", "group", "phone"]
+
+    def clean_phone(self):
+        phone = self.cleaned_data["phone"]
+        if not phone:
+            raise forms.ValidationError("Phone cannot be empty.")
+        try:
+            parsed = phonenumbers.parse(phone, None)
+        except phonenumbers.NumberParseException as e:
+            raise forms.ValidationError(e.args[0])
+        return phonenumbers.format_number(
+            parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL
+        )
 
     def clean_first_name(self):
         first_name = self.cleaned_data["first_name"]
