@@ -23,3 +23,14 @@ Path: /group_edit/14, Method: GET, Execution Time: 0.08 seconds
 Path: /group_edit/14, Method: POST, Execution Time: 0.03 seconds
 Path: /group_edit/14, Method: POST, Execution Time: 0.32 seconds
 Path: /teacher/, Method: GET, Execution Time: 0.03 seconds
+Path: /, Method: GET, Execution Time: 0.70 seconds
+Path: /favicon.ico, Method: GET, Execution Time: 0.02 seconds
+Path: /group/, Method: GET, Execution Time: 0.24 seconds
+Path: /group/, Method: POST, Execution Time: 0.02 seconds
+Path: /students/, Method: GET, Execution Time: 0.05 seconds
+Path: /student/, Method: GET, Execution Time: 0.02 seconds
+Path: /student/, Method: POST, Execution Time: 0.03 seconds
+Path: /students/, Method: GET, Execution Time: 0.01 seconds
+Path: /, Method: GET, Execution Time: 1.08 seconds
+Path: /favicon.ico, Method: GET, Execution Time: 0.02 seconds
+Path: /group/, Method: GET, Execution Time: 0.36 seconds

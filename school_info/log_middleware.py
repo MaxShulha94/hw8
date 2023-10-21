@@ -12,7 +12,7 @@ class LogMiddleware:
         execution_time = end_time - start_time
         log_data = f"Path: {request.path}, Method: {request.method}, Execution Time: {execution_time:.2f} seconds\n"
         with open(
-            r"C:\Users\User\Desktop\HW Hillel pro\hw8\school\school_info\log.txt", "a"
+            "log.txt", "a"
         ) as file:
             file.write(log_data)
         return response
